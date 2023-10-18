@@ -22,13 +22,28 @@ function displayBooks() {
     <h2>${book.title}</h2>
     <h3>Author: ${book.author}<h3>
     <p>Pages: ${book.pages}
+    <button class="remove" id=${index}>Remove</button>
     `;
     library.appendChild(bookCard);
+    addRemoveButtonListeners();
   });
 }
 
-addBookToLibrary("firstBook", "CJK", 2);
-addBookToLibrary("secondBook", "David E", 30);
+function handleRemoveClick(event) {
+  const index = event.target.dataset.index;
+  removeBook(index);
+}
+function addRemoveButtonListeners() {
+  const removeButtons = document.querySelectorAll(".remove");
+  removeButtons.forEach((button, index) => {
+    button.dataset.index = index;
+    button.addEventListener("click", handleRemoveClick);
+    // where is my index to pass to handleRemoveClick
+  });
+}
+
+addBookToLibrary("First Book", "CJK", 2);
+addBookToLibrary("Second Book", "David E", 30);
 addBookToLibrary("Changing Career", "Laura C", 50);
 addBookToLibrary("Move across the world", "Simi S", 60);
 
@@ -64,6 +79,20 @@ addBookForm.addEventListener("submit", (event) => {
 
   displayBooks();
 });
+
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  displayBooks();
+}
+
+// remove book from library - im taking this as remove from display rather than delete book from myLibrary array
+
+// ❌in the forEach i need to add the index to the book -- i added it to the button not the book
+// ✅ add a remove button to each book
+// 💭 new function to remove the book from the displaybooks function
+// pop deletes from array, slice?? based on index
+// add eventlistener to invoke remove book when clicked
+
 // ✨✨✨✨ Notes ✨✨✨✨
 
 // function Book(title, author, pages, isRead) {
