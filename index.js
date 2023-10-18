@@ -37,9 +37,9 @@ console.table(myLibrary);
 displayBooks();
 
 const dialog = document.querySelector("dialog");
-// const showButton = document.querySelector("dialog + button");
 const addNewBook = document.querySelector(".add-new-book");
 const closeButton = document.querySelector("dialog button");
+const addBookForm = document.getElementById("addBookForm");
 
 addNewBook.addEventListener("click", () => {
   dialog.showModal();
@@ -47,6 +47,22 @@ addNewBook.addEventListener("click", () => {
 
 closeButton.addEventListener("click", () => {
   dialog.close();
+});
+
+addBookForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+
+  addBookToLibrary(title, author, pages);
+
+  dialog.close();
+
+  addBookForm.reset();
+
+  displayBooks();
 });
 // ✨✨✨✨ Notes ✨✨✨✨
 

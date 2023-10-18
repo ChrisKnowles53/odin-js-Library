@@ -41,3 +41,26 @@
     );
     opacity: 0.75;
   }
+
+  .submit {
+    margin-top: 8px;
+    background-color: var(--green);
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  form {
+    width: 200px;
+    background-color: var(--yellow);
+    font-size: 20px;
+   padding: 5px;
+  }
+  input {
+    background-color: var(--blue);
+    font-size: 16px;
+    width: 90%;
+    border-radius: 8px;
+  }
+  dialog{
+    margin: none;
+  }
