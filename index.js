@@ -13,9 +13,30 @@ function addBookToLibrary(title, author, pages) {
   myLibrary.push(newBook);
 }
 
+function displayBooks() {
+  const library = document.getElementById("library");
+  library.innerHTML = "";
+
+  myLibrary.forEach((book, index) => {
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("book-card");
+    bookCard.innerHTML = `
+    <h2>${book.title}</h2>
+    <h3>Author: ${book.author}<h3>
+    <p>Pages: ${book.pages}
+    `;
+    library.appendChild(bookCard);
+  });
+}
+
 addBookToLibrary("firstBook", "CJK", 2);
 addBookToLibrary("secondBook", "David E", 30);
+addBookToLibrary("Changing Career", "Laura C", 50);
+addBookToLibrary("Move across the world", "Simi S", 60);
+
 console.table(myLibrary);
+
+displayBooks();
 
 // ✨✨✨✨ Notes ✨✨✨✨
 
