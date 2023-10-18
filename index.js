@@ -21,7 +21,7 @@ function displayBooks() {
     bookCard.innerHTML = `
     <h2>${book.title}</h2>
     <h3>Author: ${book.author}<h3>
-    <p>Pages: ${book.pages}
+    <p>Pages: ${book.pages}<p>
     <button class="remove" id=${index}>Remove</button>
     `;
     library.appendChild(bookCard);
@@ -29,17 +29,17 @@ function displayBooks() {
   });
 }
 
-function handleRemoveClick(event) {
-  const index = event.target.dataset.index;
-  removeBook(index);
-}
 function addRemoveButtonListeners() {
   const removeButtons = document.querySelectorAll(".remove");
   removeButtons.forEach((button, index) => {
     button.dataset.index = index;
     button.addEventListener("click", handleRemoveClick);
-    // where is my index to pass to handleRemoveClick
   });
+}
+
+function handleRemoveClick(event) {
+  const index = event.target.dataset.index;
+  removeBook(index);
 }
 
 addBookToLibrary("First Book", "CJK", 2);
@@ -84,14 +84,6 @@ function removeBook(index) {
   myLibrary.splice(index, 1);
   displayBooks();
 }
-
-// remove book from library - im taking this as remove from display rather than delete book from myLibrary array
-
-// ❌in the forEach i need to add the index to the book -- i added it to the button not the book
-// ✅ add a remove button to each book
-// 💭 new function to remove the book from the displaybooks function
-// pop deletes from array, slice?? based on index
-// add eventlistener to invoke remove book when clicked
 
 // ✨✨✨✨ Notes ✨✨✨✨
 
