@@ -1,5 +1,3 @@
-// All of your book objects are going to be stored in a simple array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array. Your code should look something like this:
-
 const myLibrary = [];
 
 function Book(title, author, pages) {
@@ -38,6 +36,18 @@ console.table(myLibrary);
 
 displayBooks();
 
+const dialog = document.querySelector("dialog");
+// const showButton = document.querySelector("dialog + button");
+const addNewBook = document.querySelector(".add-new-book");
+const closeButton = document.querySelector("dialog button");
+
+addNewBook.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
 // ✨✨✨✨ Notes ✨✨✨✨
 
 // function Book(title, author, pages, isRead) {

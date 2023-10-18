@@ -1,14 +1,43 @@
-.book-card {
-    border: 1px solid #333;
-    padding: 10px;
+:root {
+    --yellow: #ffc107;
+    --blue: #007bff;
+    --green: #01b101;
+    --offBlack: #333;
     margin: 10px;
+}
+
+.book-card {
+    border: 1px solid var(--offBlack);
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
 }
 
 .book-card:nth-child(odd) {
-    background-color: #ffc107;
+    background-color: var(--yellow);
 }
 
 .book-card:nth-child(even) {
-    background-color: #007bff;
+    background-color: var(--blue);
 }
+
+.add-new-book {
+    background-color: var(--green);
+    color: var(--offBlack);
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 16px;
+}
+
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+    );
+    opacity: 0.75;
+  }
