@@ -2,14 +2,20 @@
 
 const myLibrary = [];
 
-function Book(author, title) {
-  this.author = author;
+function Book(title, author, pages) {
   this.title = title;
+  this.author = author;
+  this.pages = pages;
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function addBookToLibrary(title, author, pages) {
+  const newBook = new Book(title, author, pages);
+  myLibrary.push(newBook);
 }
+
+addBookToLibrary("firstBook", "CJK", 2);
+addBookToLibrary("secondBook", "David E", 30);
+console.table(myLibrary);
 
 // ✨✨✨✨ Notes ✨✨✨✨
 
