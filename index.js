@@ -37,15 +37,6 @@ function displayBooks() {
     removeButton.setAttribute("id", index);
     bookCard.appendChild(removeButton);
 
-    // bookCard.innerHTML = `
-    // <h2>${book.title}</h2>
-    // <h3>Author: ${book.author}<h3>
-    // <p>Pages: ${book.pages}<p>
-    // <button class="remove" id=${index}>Remove</button>
-    // `;
-    // refactor this so its not string of HTML
-    // for each element h2, h3, p and button create element and appendChild to bookCard
-
     library.appendChild(bookCard);
     addRemoveButtonListeners();
   });
@@ -105,6 +96,38 @@ addBookForm.addEventListener("submit", (event) => {
 function removeBook(index) {
   myLibrary.splice(index, 1);
   displayBooks();
+}
+
+// Odin says: Add a button on each book’s display to change its read status.
+// Odin says: To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+//  Book prototype = function Book(title, .....
+//
+// 1) ✅ create a button that is default to 'not read'
+// 1.5) add an event listener for the click of the button and then trigger step 2
+// 2) create a function that toggles the status to read or not Read if already at read
+// 3) 💭 look at how to integrate this so it applies to each book not just one button
+// 4) refactor code to align with step 3 plan
+//
+const readButton = document.createElement("button");
+const body = document.querySelector("body");
+readButton.classList.add("read");
+readButton.textContent = "not read";
+readButton.setAttribute("onclick", "toggleReadStatus(this)");
+// removeButton.setAttribute("id", index); // come back to this at step3
+body.appendChild(readButton);
+
+// function toggleReadStatus(button) {
+//   let txt = button.innerText;
+//   button.innerText = txt == "not read" ? "read" : "not read"; // from stackoverflow
+// }
+// as an if statement
+function toggleReadStatus(button) {
+  let currentText = button.innerText;
+  if (currentText === "not read") {
+    button.innerText = "read";
+  } else {
+    button.innerText = "not read";
+  }
 }
 
 // ✨✨✨✨ Notes ✨✨✨✨
