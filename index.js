@@ -4,7 +4,12 @@ function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = false;
 }
+
+Book.prototype.toggleReadStatus = function () {
+  this.read = !this.read;
+};
 
 function addBookToLibrary(title, author, pages) {
   const newBook = new Book(title, author, pages);
@@ -39,8 +44,11 @@ function displayBooks() {
 
     const readButton = document.createElement("button");
     readButton.classList.add("read");
-    readButton.textContent = "not read";
-    readButton.setAttribute("onclick", "toggleReadStatus(this)");
+    readButton.textContent = book.read ? "read" : "not read";
+    readButton.addEventListener("click", () => {
+      book.toggleReadStatus();
+      displayBooks();
+    });
     bookCard.appendChild(readButton);
 
     library.appendChild(bookCard);
@@ -103,33 +111,6 @@ function removeBook(index) {
   myLibrary.splice(index, 1);
   displayBooks();
 }
-
-// Odin says: Add a button on each book’s display to change its read status.
-// Odin says: To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
-//  Book prototype = function Book(title, .....
-//
-// 1) ✅ create a button that is default to 'not read'
-// 1.5) ✅ add an event listener for the click of the button and then trigger step 2
-// 2) ✅ create a function that toggles the status to read or not Read if already at read
-// 3) 💭 look at how to integrate this so it applies to each book not just one button
-// ❌✅ 3.1) move the readButton code into the myLibrary.forEach loop
-// ❌✅ 3.2) change body.appendChild(readButton) to bookCard.appendChild(readButton)
-// ❌ 3.1) and 3.2) completed in this way is not 'on your Book prototype instance'
-// 💭 book.prototype....something
-
-function toggleReadStatus(button) {
-  let currentText = button.innerText;
-  if (currentText === "not read") {
-    button.innerText = "read";
-  } else {
-    button.innerText = "not read";
-  }
-}
-// as ternary operator
-// function toggleReadStatus(button) {
-//   let currentText = button.innerText;
-//   button.innerText = currentText === "not read" ? "read" : "not read";
-// }
 
 // ✨✨✨✨ Notes ✨✨✨✨
 
