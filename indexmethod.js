@@ -4,7 +4,12 @@ function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = false;
 }
+
+Book.prototype.toggleReadStatus = function () {
+  this.read = !this.read;
+};
 
 function addBookToLibrary(title, author, pages) {
   const newBook = new Book(title, author, pages);
@@ -39,8 +44,11 @@ function displayBooks() {
 
     const readButton = document.createElement("button");
     readButton.classList.add("read");
-    readButton.textContent = "not read";
-    readButton.setAttribute("onclick", "toggleReadStatus(this)");
+    readButton.textContent = book.read ? "read" : "not read";
+    readButton.addEventListener("click", () => {
+      book.toggleReadStatus();
+      displayBooks();
+    });
     bookCard.appendChild(readButton);
 
     library.appendChild(bookCard);
@@ -117,14 +125,14 @@ function removeBook(index) {
 // ❌ 3.1) and 3.2) completed in this way is not 'on your Book prototype instance'
 // 💭 book.prototype....something
 
-function toggleReadStatus(button) {
-  let currentText = button.innerText;
-  if (currentText === "not read") {
-    button.innerText = "read";
-  } else {
-    button.innerText = "not read";
-  }
-}
+// function toggleReadStatus(button) {
+//   let currentText = button.innerText;
+//   if (currentText === "not read") {
+//     button.innerText = "read";
+//   } else {
+//     button.innerText = "not read";
+//   }
+// }
 // as ternary operator
 // function toggleReadStatus(button) {
 //   let currentText = button.innerText;
