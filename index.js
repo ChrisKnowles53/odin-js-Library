@@ -16,67 +16,85 @@ function addBookToLibrary(title, author, pages) {
   myLibrary.push(newBook);
 }
 
+function createBookCard(book, index) {
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("book-card");
+
+  const titleElement = createTitleElement(book.title);
+  const authorElement = createAuthorElement(book.author);
+  const pagesElement = createPagesElement(book.pages);
+  const removeButton = createRemoveButton(index);
+  const readButton = createReadButton(book);
+
+  bookCard.appendChild(titleElement);
+  bookCard.appendChild(authorElement);
+  bookCard.appendChild(pagesElement);
+  bookCard.appendChild(removeButton);
+  bookCard.appendChild(readButton);
+
+  return bookCard;
+}
+
+function createTitleElement(title) {
+  const titleElement = document.createElement("h2");
+  titleElement.textContent = title;
+  return titleElement;
+}
+
+function createAuthorElement(author) {
+  const authorElement = document.createElement("h3");
+  authorElement.textContent = `Author: ${author}`;
+  return authorElement;
+}
+
+function createPagesElement(pages) {
+  const pagesElement = document.createElement("p");
+  pagesElement.textContent = `Pages: ${pages}`;
+  return pagesElement;
+}
+
+function createRemoveButton(index) {
+  const removeButton = document.createElement("button");
+  removeButton.classList.add("remove");
+  removeButton.textContent = "remove";
+  removeButton.setAttribute("id", index);
+  removeButton.dataset.index = index;
+  removeButton.addEventListener("click", () => handleRemoveClick(index));
+  return removeButton;
+}
+
+function createReadButton(book) {
+  const readButton = document.createElement("button");
+  readButton.classList.add("read");
+  readButton.textContent = book.read ? "read" : "not read";
+  readButton.addEventListener("click", () => toggleReadStatus(book));
+  return readButton;
+}
+
 function displayBooks() {
   const library = document.getElementById("library");
   library.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("book-card");
-
-    const titleElement = document.createElement("h2");
-    titleElement.textContent = book.title;
-    bookCard.appendChild(titleElement);
-
-    const authorElement = document.createElement("h3");
-    authorElement.textContent = `Author: ${book.author}`;
-    bookCard.appendChild(authorElement);
-
-    const pagesElement = document.createElement("p");
-    pagesElement.textContent = `Pages: ${book.pages}`;
-    bookCard.appendChild(pagesElement);
-
-    const removeButton = document.createElement("button");
-    removeButton.classList.add("remove");
-    removeButton.textContent = "remove";
-    removeButton.setAttribute("id", index);
-    bookCard.appendChild(removeButton);
-
-    const readButton = document.createElement("button");
-    readButton.classList.add("read");
-    readButton.textContent = book.read ? "read" : "not read";
-    readButton.addEventListener("click", () => {
-      book.toggleReadStatus();
-      displayBooks();
-    });
-    bookCard.appendChild(readButton);
+    const bookCard = createBookCard(book, index);
 
     library.appendChild(bookCard);
-    addRemoveButtonListeners();
   });
 }
 
-function addRemoveButtonListeners() {
-  const removeButtons = document.querySelectorAll(".remove");
-  removeButtons.forEach((button, index) => {
-    button.dataset.index = index;
-    button.addEventListener("click", handleRemoveClick);
-  });
+function toggleReadStatus(book) {
+  book.toggleReadStatus();
+  displayBooks();
 }
 
-function handleRemoveClick(event) {
-  const index = event.target.dataset.index;
+function handleRemoveClick(index) {
   removeBook(index);
 }
 
-addBookToLibrary("First Book", "CJK", 2);
-addBookToLibrary("Second Book", "David E", 30);
-addBookToLibrary("Changing Career", "Laura C", 50);
-addBookToLibrary("Move across the world", "Simi S", 60);
-
-console.table(myLibrary);
-
-displayBooks();
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  displayBooks();
+}
 
 const dialog = document.querySelector("dialog");
 const addNewBook = document.querySelector(".add-new-book");
@@ -107,10 +125,14 @@ addBookForm.addEventListener("submit", (event) => {
   displayBooks();
 });
 
-function removeBook(index) {
-  myLibrary.splice(index, 1);
-  displayBooks();
-}
+addBookToLibrary("First Book", "CJK", 2);
+addBookToLibrary("Second Book", "David E", 30);
+addBookToLibrary("Changing Career", "Laura C", 50);
+addBookToLibrary("Move across the world", "Simi S", 60);
+
+console.table(myLibrary);
+
+displayBooks();
 
 // ✨✨✨✨ Notes ✨✨✨✨
 
