@@ -18,13 +18,34 @@ function displayBooks() {
   myLibrary.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
-    bookCard.innerHTML = `
-    <h2>${book.title}</h2>
-    <h3>Author: ${book.author}<h3>
-    <p>Pages: ${book.pages}<p>
-    <button class="remove" id=${index}>Remove</button>
-    `;
+
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = book.title;
+    bookCard.appendChild(titleElement);
+
+    const authorElement = document.createElement("h3");
+    authorElement.textContent = `Author: ${book.author}`;
+    bookCard.appendChild(authorElement);
+
+    const pagesElement = document.createElement("p");
+    pagesElement.textContent = `Pages: ${book.pages}`;
+    bookCard.appendChild(pagesElement);
+
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove");
+    removeButton.textContent = "remove";
+    removeButton.setAttribute("id", index);
+    bookCard.appendChild(removeButton);
+
+    // bookCard.innerHTML = `
+    // <h2>${book.title}</h2>
+    // <h3>Author: ${book.author}<h3>
+    // <p>Pages: ${book.pages}<p>
+    // <button class="remove" id=${index}>Remove</button>
+    // `;
     // refactor this so its not string of HTML
+    // for each element h2, h3, p and button create element and appendChild to bookCard
+
     library.appendChild(bookCard);
     addRemoveButtonListeners();
   });
