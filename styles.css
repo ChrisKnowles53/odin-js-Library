@@ -36,7 +36,7 @@
 h1 {
     margin-bottom: 12px;
 }
-.add-new-book, .submit {
+.add-new-book, .submit, .remove {
     background-color: var(--green);
     color: var(--white);
     padding: 5px;
@@ -44,6 +44,10 @@ h1 {
     margin-top: 8px;
     border-radius: 8px;
     font-size: 18px;
+}
+
+.remove {
+    font-size: 14px;
 }
 
 ::backdrop {

@@ -24,6 +24,7 @@ function displayBooks() {
     <p>Pages: ${book.pages}<p>
     <button class="remove" id=${index}>Remove</button>
     `;
+    // refactor this so its not string of HTML
     library.appendChild(bookCard);
     addRemoveButtonListeners();
   });
