@@ -1,5 +1,4 @@
 const myLibrary = [];
-
 function Book(title, author, pages) {
   this.title = title;
   this.author = author;
@@ -129,6 +128,8 @@ addBookToLibrary("First Book", "CJK", 2);
 addBookToLibrary("Second Book", "David E", 30);
 addBookToLibrary("Changing Career", "Laura C", 50);
 addBookToLibrary("Move across the world", "Simi S", 60);
+addBookToLibrary("Not left out", "Paddy W", 1);
+addBookToLibrary("The silent assassin", "Terry D", 200);
 
 console.table(myLibrary);
 
