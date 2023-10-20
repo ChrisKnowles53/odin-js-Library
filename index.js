@@ -34,6 +34,18 @@ function createBookCard(book, index) {
   return bookCard;
 }
 
+// Terrys' suggestion to create a function to create element with type then you just invoke for the function rather than repeating your lines of code.
+// function createElementWithText(elemType, textContent) {
+//   const element = document.createElement(elemType);
+//   element.textContent = textContent;
+//   return element;
+// }
+
+// // Then on lines 22-26:
+
+// const titleElement = createElementWithText('h2', book.title);
+// // etc.
+
 function createTitleElement(title) {
   const titleElement = document.createElement("h2");
   titleElement.textContent = title;
